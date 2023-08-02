@@ -1,0 +1,17 @@
+<h1>Créer une activité</h1>
+<%= form_with model: @activity do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :currency %>
+  <%= f.select :currency, options_for_select([['€', 'EUR'], ['$', 'USD'], ['£', 'GBP']]) %>
+
+  <%= f.label :category %>
+  <%= f.select :category, options_for_select( [['Couple', 'Couple'], ['Travel', 'Travel'], ['Event', 'Event'], ['Roomate', 'Roomate'], ['Project', 'Project'], ['Other', 'Other']]) %>
+
+  <%= f.submit %>
+
+<% end %>

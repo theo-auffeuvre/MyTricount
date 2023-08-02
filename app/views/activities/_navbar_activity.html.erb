@@ -1,0 +1,24 @@
+<nav class="w-full h-16 bg-primary">
+  <div class="flex justify-between h-full mx-5 text-white">
+    <div class="flex align-center my-auto">
+      <%= link_to root_path do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+      <% end %>
+    </div>
+    <div class="flex align-center my-auto w-full ml-5">
+      <%= link_to edit_activity_path(@activity) do %>
+        <p class="text-xl"><%= @activity.title %></p>
+        <span class="text-sm"><%= @activity.participants.map { |u| u.user.email }.join(", ") %></span>
+      <% end %>
+    </div>
+    <div class="flex align-center my-auto">
+      <%= link_to "mailto:?subject=MyTricountLink is here&body=Check out this site #{ request.original_url }" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+        </svg>
+      <% end %>
+    </div>
+  </div>
+</nav>

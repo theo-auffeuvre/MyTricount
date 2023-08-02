@@ -1,0 +1,15 @@
+<%= form_with model: [ @activity, @expense ] do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :amount %>
+  <%= form.text_field :amount %>
+
+  <%= form.label :date %>
+  <%= form.date_field :date %>
+
+  <%= form.label :participants %>
+  <%= form.select :participant_id, @activity.participants.map { |u| [u.user.email, u.id] } %>
+
+  <%= form.submit %>
+<% end %>

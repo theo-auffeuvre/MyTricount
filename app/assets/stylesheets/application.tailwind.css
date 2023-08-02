@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand:wght@300&display=swap');
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+@layer components {
+  .active-tab {
+    @apply border-b-2 border-lime-500;
+  }
+  .active-tab > h2 {
+    @apply text-white !important;
+  }
+  .active-tab > svg {
+    @apply stroke-white !important;
+  }
+}
+
