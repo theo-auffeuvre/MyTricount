@@ -1,10 +1,8 @@
-<%= current_user.email %>
-<%= link_to "Logout", destroy_user_session_path, data: { turbo_method: 'delete' } %>
 <%= render "activities/navbar" %>
 
 <% @activities.each do |activity| %>
   <%= link_to activity_path(activity), style: "text-decoration: none" do %>
-    <div class="h-24 border-b border-slate-600">
+    <div class="h-24 border-b border-slate-300">
       <div class="flex justify-between h-full mx-5">
         <div class="flex flex-col flex align-center my-auto">
           <p class="font-medium text-lg"><%= activity.title %></p>

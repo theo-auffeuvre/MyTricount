@@ -10,7 +10,7 @@
     <div class="flex align-center my-auto w-full ml-5">
       <%= link_to edit_activity_path(@activity) do %>
         <p class="text-xl"><%= @activity.title %></p>
-        <span class="text-sm"><%= @activity.participants.map { |u| u.user.email }.join(", ") %></span>
+        <span class="text-sm"><%= @activity.participants.map { |u| "#{u.user.firstname} #{u.user.lastname[0]}." }.join(", ") %></span>
       <% end %>
     </div>
     <div class="flex align-center my-auto">

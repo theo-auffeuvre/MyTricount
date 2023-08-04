@@ -1,17 +1,31 @@
-<h1>Créer une activité</h1>
+<%= render 'shared/navbar_text', type: "New MyTricount" %>
+
 <%= form_with model: @activity do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <div class="mx-5 my-10 flex flex-col gap-5">
+    <div class="w-full relative z-0">
+      <%= f.text_field :title, id: "title", class: "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer", placeholder:" " %>
+      <%= f.label :title, for: "title", class: "absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" %>
+    </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+    <div class="w-full relative z-0">
+      <%= f.text_field :description, id: "description", class: "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer", placeholder:" " %>
+      <%= f.label :description, for: "description", class: "absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-primary peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" %>
+    </div>
 
-  <%= f.label :currency %>
-  <%= f.select :currency, options_for_select([['€', 'EUR'], ['$', 'USD'], ['£', 'GBP']]) %>
+    <%= f.select :currency, options_for_select([["Currency", "Currency", { class: "disabled selected text-gray-900" }], ['€ (EUR)', 'EUR', { class: "text-gray-900" }], ['$ (USD)', 'USD', { class: "text-gray-900" }], ['£ (GBP)', 'GBP', { class: "text-gray-900" }]]) %>
 
-  <%= f.label :category %>
-  <%= f.select :category, options_for_select( [['Couple', 'Couple'], ['Travel', 'Travel'], ['Event', 'Event'], ['Roomate', 'Roomate'], ['Project', 'Project'], ['Other', 'Other']]) %>
+    <%= f.label :category, class: "text-sm text-gray-500" %>    
+    <div class="flex flex-wrap" data-controller="switch-button" data-switch-button-target="all">
+      <%= f.hidden_field :category, data: { switch_button_target: "category" } %>
+      <% ['😍 Couple', '✈️ Travel', '🎤 Event', '🏠 Roomate', '🛠️ Project', '👉 Other'].each_with_index do |cat, index| %>
+        <button value="<%= cat[2..-1] %>" class="border border-primary text-primary rounded-2xl px-3 py-1 text-sm mr-2 mb-2 <%= "!text-white bg-primary" if index == 0 %>", data-action="click->switch-button#toggle"><%= cat %></button>
+      <% end %>
+    </div>
 
-  <%= f.submit %>
-
+    <%= f.button nil, class: "absolute top-5 right-5" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+    <% end %>
+  </div>
 <% end %>
