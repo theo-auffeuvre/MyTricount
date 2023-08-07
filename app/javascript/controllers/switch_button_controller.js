@@ -11,6 +11,7 @@ export default class extends Controller {
       element.classList.remove("!text-white", "bg-primary")
     });
     e.currentTarget.classList.add("!text-white", "bg-primary")
+    console.log(e.currentTarget.value)
     this.categoryTarget.value = e.currentTarget.value
   }
 }

@@ -1,50 +1,54 @@
 <div class="hidden" data-tabs-target="content_2">
- <% @statements.each do |statement| %>
-     <div class="h-14 border-b border-slate-300">
-      <div class="flex h-full mx-5">
-        <% if statement[1] >= 0 %>
-          <div class="w-full flex flex-col align-center my-auto">
-            <div class="pr-2">
-              <p class="text-right"><%= "#{statement[0].firstname} #{statement[0].lastname[0]}." %></p>
+  <% if @statements.empty? %>
+    <p class="h-full text-center mt-14 text-slate-400 font-semibold">Nothing to settle yet</p>
+  <% else %>
+  <% @statements.each do |statement| %>
+      <div class="h-14 border-b border-slate-300">
+        <div class="flex h-full mx-5">
+          <% if statement[1] >= 0 %>
+            <div class="w-full flex flex-col align-center my-auto">
+              <div class="pr-2">
+                <p class="text-right"><%= "#{statement[0].firstname} #{statement[0].lastname[0]}." %></p>
+              </div>
             </div>
-          </div>
-          <div class="w-full flex flex-col align-center my-auto">
-            <div class="h-8 bg-green-500/70 rounded-r pl-2 flex flex-col justify-center" style="width: <%= (statement[1] / @statements.values.map(&:abs).max * 100).to_i %>%">
-              <p class="text-left whitespace-nowrap"><%= "+#{"%.2f" % statement[1]} #{@activity.currency}" %></p>
+            <div class="w-full flex flex-col align-center my-auto">
+              <div class="h-8 bg-green-500/70 rounded-r pl-2 flex flex-col justify-center" style="width: <%= (statement[1] / @statements.values.map(&:abs).max * 100).to_i %>%">
+                <p class="text-left whitespace-nowrap"><%= "+#{"%.2f" % statement[1]} #{@activity.currency}" %></p>
+              </div>
             </div>
-          </div>
-        <% else %>
-          <div class="w-full flex flex-col align-center my-auto">
-            <div class="h-8 w-full bg-red-500/70 rounded-l pr-2 flex flex-col justify-center">
-              <p class="text-right whitespace-nowrap"><%= "#{"%.2f" % statement[1]} #{@activity.currency}" %></p>
+          <% else %>
+            <div class="w-full flex flex-col align-center my-auto">
+              <div class="h-8 w-full bg-red-500/70 rounded-l pr-2 flex flex-col justify-center">
+                <p class="text-right whitespace-nowrap"><%= "#{"%.2f" % statement[1]} #{@activity.currency}" %></p>
+              </div>
             </div>
-          </div>
-          <div class="w-full flex flex-col align-center my-auto">
-            <div class="pl-2">
-              <p class="text-left"><%= "#{statement[0].firstname} #{statement[0].lastname[0]}." %></p>
+            <div class="w-full flex flex-col align-center my-auto">
+              <div class="pl-2">
+                <p class="text-left"><%= "#{statement[0].firstname} #{statement[0].lastname[0]}." %></p>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="h-14 bg-slate-400 flex flex-col justify-center">
-    <p class="text-slate-600 mx-5">HOW TO SETTLE UP?</p>
-  </div>
-
-  <% @balances.each do |balance| %>
-    <div class="h-24 border border-slate-300 m-5 px-5 rounded">
-      <div class="flex justify-between h-full">
-        <div class="flex flex-col align-center my-auto">
-          <p class="text-l"><%= "#{balance[:from].firstname} #{balance[:from].lastname[0]}." %><p>
-          <p class="text-sm">owes to<p>
-          <p class="text-l"><%= "#{balance[:to].firstname} #{balance[:to].lastname[0]}." %><p>
-        </div>
-        <div class="flex flex-col align-center my-auto">
-          <p><%= "#{"%.2f" % balance[:amount]} #{@activity.currency}" %><p>
+          <% end %>
         </div>
       </div>
+    <% end %>
+
+    <div class="h-14 bg-slate-400 flex flex-col justify-center">
+      <p class="text-slate-600 mx-5">HOW TO SETTLE UP?</p>
     </div>
+
+    <% @balances.each do |balance| %>
+      <div class="h-24 border border-slate-300 m-5 px-5 rounded">
+        <div class="flex justify-between h-full">
+          <div class="flex flex-col align-center my-auto">
+            <p class="text-l"><%= "#{balance[:from].firstname} #{balance[:from].lastname[0]}." %><p>
+            <p class="text-sm">owes to<p>
+            <p class="text-l"><%= "#{balance[:to].firstname} #{balance[:to].lastname[0]}." %><p>
+          </div>
+          <div class="flex flex-col align-center my-auto">
+            <p><%= "#{"%.2f" % balance[:amount]} #{@activity.currency}" %><p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
