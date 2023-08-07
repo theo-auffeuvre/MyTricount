@@ -1,23 +1,25 @@
 <div data-tabs-target="content_1">
   <% unless @expenses.empty? %>
-    <% @expenses.each do |expense| %>
-      <%= link_to edit_activity_expense_path(@activity, expense), style: "text-decoration: none" do %>
-        <div class="h-24 border-b border-slate-300">
-          <div class="flex justify-between h-full mx-5">
-            <div class="flex flex-col align-center my-auto">
-              <p class="font-medium text-lg"><%= expense.title %></p>
-              <p class="text-slate-600"><%= "Payé par #{expense.user.firstname} #{expense.user.lastname[0]}." %></p>
-            </div>
-            <div class="flex flex-col align-center my-auto">
-              <p class="font-medium text-lg"><%= "#{expense.amount} #{expense.activity.currency}" %></p>
-              <p class="text-slate-600"><%= expense.date %></p>
+    <div class="mb-24">
+      <% @expenses.each do |expense| %>
+        <%= link_to edit_activity_expense_path(@activity, expense), style: "text-decoration: none" do %>
+          <div class="h-24 border-b border-slate-300">
+            <div class="flex justify-between h-full mx-5">
+              <div class="flex flex-col align-center my-auto">
+                <p class="font-medium text-lg"><%= expense.title %></p>
+                <p class="text-slate-600"><%= "Payé par #{expense.user.firstname} #{expense.user.lastname[0]}." %></p>
+              </div>
+              <div class="flex flex-col align-center my-auto">
+                <p class="font-medium text-lg"><%= "#{expense.amount} #{expense.activity.currency}" %></p>
+                <p class="text-slate-600"><%= expense.date %></p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% else %>
-    <p>No expenses yet</p>
+    <p class="h-full text-center mt-14 text-slate-400 font-semibold">No expenses yet</p>
   <% end %>
 
     <div class="fixed bottom-0 h-16 w-screen bg-slate-900">
